@@ -119,6 +119,28 @@ const modalBox = document.getElementById("modalBox");
 const modalFrame = document.getElementById("modalFrame");
 const modalTitle = document.getElementById("modalTitle");
 
+// Link de reserva + aviso de carregamento + pré-conexão com o Drive
+const modalLink = document.createElement("a");
+modalLink.className = "modal__drive";
+modalLink.target = "_blank";
+modalLink.rel = "noopener";
+modalLink.textContent = "Não carregou? Assista no Google Drive";
+modalTitle.insertAdjacentElement("afterend", modalLink);
+["https://drive.google.com", "https://www.gstatic.com", "https://youtube.googleapis.com"].forEach((h) => {
+  const l = document.createElement("link");
+  l.rel = "preconnect"; l.href = h; l.crossOrigin = "";
+  document.head.appendChild(l);
+});
+const vStyle = document.createElement("style");
+vStyle.textContent = `.vload{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:#bdbdbd;font:500 14px Inter,system-ui,sans-serif;background:#000}
+.vload span{width:38px;height:38px;border-radius:50%;border:3px solid rgba(255,255,255,.15);border-top-color:var(--accent,#ff7a1a);animation:vspin .8s linear infinite}
+@keyframes vspin{to{transform:rotate(360deg)}}
+.modal__frame iframe{opacity:0;transition:opacity .3s}
+.modal__frame iframe.is-ready{opacity:1}
+.modal__drive{display:block;text-align:center;margin-top:8px;font-size:13px;color:var(--muted,#9a9a9a);text-decoration:underline}
+.modal__drive:hover{color:var(--accent,#ff7a1a)}`;
+document.head.appendChild(vStyle);
+
 const isMobile = () => window.matchMedia("(max-width: 620px)").matches;
 let lastDims = [9, 16];
 
@@ -158,8 +180,11 @@ function openModal(v) {
   };
   probe.src = thumbUrl(v.id);
 
-  modalFrame.innerHTML = `<iframe src="${previewUrl(v.id)}"
-      allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>`;
+  modalFrame.innerHTML = `<div class="vload"><span></span>Carregando vídeo…</div><iframe src="${previewUrl(v.id)}"
+      allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  const vf = modalFrame.querySelector("iframe");
+  vf.addEventListener("load", () => { vf.classList.add("is-ready"); const ld = modalFrame.querySelector(".vload"); if (ld) ld.remove(); });
+  modalLink.href = `https://drive.google.com/file/d/${v.id}/view`;
 
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");

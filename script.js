@@ -7,31 +7,26 @@
    Para adicionar/editar um vídeo, é só mexer aqui:
    - id    : ID do arquivo no Google Drive (o que vem em /file/d/AQUI/view)
    - title : título que aparece no card
-   - cat   : "vsl" | "criativos" | "reels"
+   - cat   : "vsl" | "criativos" | "tiktok"
    O arquivo precisa estar compartilhado como
    "Qualquer pessoa com o link" para tocar no site.
    ----------------------------------------------------------- */
 const VIDEOS = [
-  // ---- DR - VSL ----
-  { id: "1xU6VFIcq7VG0mVGTBjvezqFAmAX11nzM", title: "App Loteria", cat: "vsl" },
-  { id: "1ffT5aarA9Wl6o3AU58wPtesz8tWPqXsw", title: "Diabetes (EUA)", cat: "vsl" },
-  { id: "1pGKmjEpL9XvZ57TYwMoNmMhecShsYX27", title: "Memória", cat: "vsl" },
-  { id: "1Ksa3OYUYc7dBvyR8PHE4FqTd4khIaUeC", title: "Memória (PT-BR)", cat: "vsl" },
+  // ---- VSL ----
+  { id: "1uN6QT5ZBDjHlm5-FweShvtPX82hiMfJa", title: "VSL 01", cat: "vsl" },
+  { id: "1jL1CYJjOfTlTlaOGfU8ef_qXQLaTRHZy", title: "VSL 02", cat: "vsl" },
 
-  // ---- DR - CRIATIVOS ----
-  { id: "1rWEiA6UhSUOpwp_SkTbqr6hjHM9BxBNP", title: "Depoimento", cat: "criativos" },
-  { id: "186Bg0_MLT_lZ1cLBw69da00t95fWN0K9", title: "UGC · Emagrecimento", cat: "criativos" },
-  { id: "1qnczMJHlY8vfF9qmbZqtO-fUedG337UR", title: "Entrevista documental", cat: "criativos" },
-  { id: "1n2XhLYTJ5O_ygBgmXfZwpa1ixE9f7snN", title: "Demonstração de produto", cat: "criativos" },
-  { id: "1b_1iRNoH_twBos_gFzxOGCFkhzswujZ3", title: "Gancho estilo notícia", cat: "criativos" },
-  { id: "1_-kDDxWa8d05CNz6fSP4YM6Il1jvs_Tw", title: "Gancho de curiosidade", cat: "criativos" },
+  // ---- ADS / CRIATIVOS ----
+  { id: "1spgTiyzIlrVbPDM9Uyj4tDWBL8GtPx1v", title: "Criativo 01", cat: "criativos" },
+  { id: "1UwBIeqcVs-AGqyVnq_3KzU-lzqI6T6RW", title: "Criativo 02", cat: "criativos" },
+  { id: "1yXO_XziqJrTiwUn5sk4kFhKcKgs_61YZ", title: "Criativo 03", cat: "criativos" },
 
-  // ---- INSTAGRAM / REELS ----
-  { id: "1S3KoD1kRXCcFVGdnSQOUQZfr3gvVuKr7", title: "Talking head", cat: "reels" },
-  { id: "1iwsgmopLrXC2YIYXd7wucRCCQB_7LNng", title: "UGC vertical", cat: "reels" },
+  // ---- TIKTOK SHOP ----
+  { id: "1FAA0kNaL8ChpmdD20oq2UA97Rfw33iVj", title: "TikTok Shop 01", cat: "tiktok" },
+  { id: "18tk7lr9n_fDQQL8ytdrCV_FIDuwu6kCv", title: "TikTok Shop 02", cat: "tiktok" },
 ];
 
-const CAT_LABEL = { vsl: "VSL", criativos: "Criativo", reels: "Reel" };
+const CAT_LABEL = { vsl: "VSL", criativos: "Criativo", tiktok: "TikTok Shop" };
 
 const thumbUrl = (id) => `https://drive.google.com/thumbnail?id=${id}&sz=w1280`;
 const previewUrl = (id) => `https://drive.google.com/file/d/${id}/preview`;
